@@ -34,9 +34,14 @@
   <div class="row">
     <div class="col-md-4">
       <div *ngFor="let item of listComment">
-        <div class="card" *ngIf="item.phase == 1" style="cursor: pointer;">
+        <div
+          class="card"
+          *ngIf="item.phase == 1"
+          style="cursor: pointer;"
+          (click)="openModal(viewModal, item)"
+        >
           <div class="card-header bg-gradient-info">
-            <h3 class="m-0">{{ item.phase }}</h3>
+            <h3 class="m-0">Phase {{ item.phase }}</h3>
           </div>
           <div class="card-body">{{ item.comment }}</div>
         </div>
@@ -45,9 +50,14 @@
 
     <div class="col-md-4">
       <div *ngFor="let item of listComment">
-        <div class="card" *ngIf="item.phase == 2" style="cursor: pointer;">
+        <div
+          class="card"
+          *ngIf="item.phase == 2"
+          style="cursor: pointer;"
+          (click)="openModal(viewModal, item)"
+        >
           <div class="card-header bg-gradient-success">
-            <h3 class="m-0">{{ item.phase }}</h3>
+            <h3 class="m-0">Phase {{ item.phase }}</h3>
           </div>
           <div class="card-body">{{ item.comment }}</div>
         </div>
@@ -56,9 +66,14 @@
 
     <div class="col-md-4">
       <div *ngFor="let item of listComment">
-        <div class="card" *ngIf="item.phase == 3" style="cursor: pointer;">
+        <div
+          class="card"
+          *ngIf="item.phase == 3"
+          style="cursor: pointer;"
+          (click)="openModal(viewModal, item)"
+        >
           <div class="card-header bg-gradient-danger">
-            <h3 class="m-0">{{ item.phase }}</h3>
+            <h3 class="m-0">Phase {{ item.phase }}</h3>
           </div>
           <div class="card-body">{{ item.comment }}</div>
         </div>
@@ -295,22 +310,30 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label class="form-control-label">Comment</label>
-            <input
+            <label class="form-control-label">Project</label>
+            <select
               class="form-control"
-              placeholder="Enter Comment"
-              formControlName="comment"
-            />
+              placeholder="Enter Fail Period"
+              formControlName="project_id"
+            >
+              <option *ngFor="let list of listProject" value="list.id">{{
+                list.name
+              }}</option>
+            </select>
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label class="form-control-label">Phase</label>
-            <input
+            <select
               class="form-control"
               placeholder="Enter Phase"
               formControlName="phase"
-            />
+            >
+              <option value="1">Phase 1</option>
+              <option value="2">Phase 2</option>
+              <option value="3">Phase 3</option>
+            </select>
           </div>
         </div>
         <!-- <div class="col">
@@ -326,20 +349,19 @@
       </div>
 
       <div class="row">
+
         <div class="col">
           <div class="form-group">
-            <label class="form-control-label">Project</label>
-            <select
+            <label class="form-control-label">Comment</label>
+            <textarea
               class="form-control"
-              placeholder="Enter Fail Period"
-              formControlName="project_id"
-            >
-              <option *ngFor="let list of listProject" value="list.id">{{
-                list.name
-              }}</option>
-            </select>
+              placeholder="Enter Comment"
+              formControlName="comment"
+              rows="4"
+            ></textarea>
           </div>
         </div>
+        
       </div>
     </form>
   </div>
@@ -428,6 +450,102 @@
             </select>
           </div>
         </div>
+      </div>
+      <input name="id" formControlName="id" type="hidden" />
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <div class="text-center">
+      <button class="btn btn-default" (click)="editDetailsComment()">
+        Save
+      </button>
+      <button
+        class="btn btn-outline-danger ml-auto"
+        data-dismiss="modal"
+        type="button"
+        (click)="closeModal()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #viewModal>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      View Comment
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="commentDetailsEditForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Phase</label>
+            <select
+              class="form-control"
+              placeholder="Enter Phase"
+              formControlName="phase"
+            >
+              <option value="1">Phase 1</option>
+              <option value="2">Phase 2</option>
+              <option value="3">Phase 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Project</label>
+            <select
+              class="form-control"
+              placeholder="Enter Fail Period"
+              formControlName="project_id"
+            >
+              <option *ngFor="let list of listProject" value="list.id">{{
+                list.name
+              }}</option>
+            </select>
+          </div>
+        </div>
+        <!-- <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Description</label>
+            <input
+              class="form-control"
+              placeholder="Enter Description"
+              formControlName="user_id"
+            />
+          </div>
+        </div> -->
+      </div>
+
+      <div class="row">
+
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Comment</label>
+            <textarea
+              class="form-control"
+              placeholder="Enter Comment"
+              formControlName="comment"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+        
       </div>
       <input name="id" formControlName="id" type="hidden" />
     </form>

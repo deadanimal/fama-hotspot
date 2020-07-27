@@ -140,10 +140,32 @@ export class FailComponent implements OnInit, OnDestroy {
     });
   }
 
+  onImageChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.createFailDetailsForm.get("image").setValue(file);
+    }
+  }
+
+  onDocumentChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.createFailDetailsForm.get("document").setValue(file);
+    }
+  }
+
   createDetailsFail() {
     console.log(this.createFailDetailsForm);
     this.loadingBar.start();
-    this.failData.create(this.createFailDetailsForm.value).subscribe(
+
+    const formData = new FormData();
+    formData.append("image", this.createFailDetailsForm.get("image").value);
+    formData.append(
+      "document",
+      this.createFailDetailsForm.get("document").value
+    );
+
+    this.failData.create(formData).subscribe(
       () => {
         // Success
         // this.isLoading = false

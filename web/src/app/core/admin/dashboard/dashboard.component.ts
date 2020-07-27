@@ -5,6 +5,15 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_continentsLow from "@amcharts/amcharts4-geodata/continentsLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { Router } from "@angular/router";
+import { BsModalRef, BsModalService } from "ngx-bootstrap";
+
+export enum SelectionType {
+  single = "single",
+  multi = "multi",
+  multiClick = "multiClick",
+  cell = "cell",
+  checkbox = "checkbox",
+}
 
 @Component({
   selector: "app-dashboard",
@@ -18,6 +27,61 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private chart2: any;
   private clicked: any = true;
   private clicked1: any = false;
+
+  // Modal
+  modal: BsModalRef;
+  modalConfig = {
+    keyboard: true,
+    class: "modal-dialog-centered",
+  };
+
+  // Data
+  public datas: any = [];
+
+  // Table
+  tableEntries: number = 5;
+  tableSelected: any[] = [];
+  tableTemp = [];
+  tableActiveRow: any;
+  // tableRows: Project[] = [];
+  SelectionType = SelectionType;
+  listProject: any = [
+    {
+      name: "Project 1",
+      start_date: "2019-07-27T01:07:14Z",
+      expected_completion_date: "2019-07-27T01:07:14Z",
+      status: "OG",
+      created_at: "2019-07-27T01:07:14Z",
+    },
+    {
+      name: "Project 2",
+      start_date: "2019-07-27T01:07:14Z",
+      expected_completion_date: "2019-07-27T01:07:14Z",
+      status: "CO",
+      created_at: "2019-07-27T01:07:14Z",
+    },
+    {
+      name: "Project 3",
+      start_date: "2019-07-27T01:07:14Z",
+      expected_completion_date: "2019-07-27T01:07:14Z",
+      status: "PE",
+      created_at: "2019-07-27T01:07:14Z",
+    },
+    {
+      name: "Project 4",
+      start_date: "2019-07-27T01:07:14Z",
+      expected_completion_date: "2019-07-27T01:07:14Z",
+      status: "CO",
+      created_at: "2019-07-27T01:07:14Z",
+    },
+    {
+      name: "Project 5",
+      start_date: "2019-07-27T01:07:14Z",
+      expected_completion_date: "2019-07-27T01:07:14Z",
+      status: "OG",
+      created_at: "2019-07-27T01:07:14Z",
+    },
+  ];
 
   constructor(private zone: NgZone) {}
 
@@ -37,6 +101,32 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  entriesChange($event) {
+    this.tableEntries = $event.target.value;
+  }
+
+  filterTable($event) {
+    // let val = $event.target.value;
+    // this.tableTemp = this.tableRows.filter(function (d) {
+    //   for (var key in d) {
+    //     if (d[key].toLowerCase().indexOf(val) !== -1) {
+    //       return true;
+    //     }
+    //   }
+    //   return false;
+    // });
+  }
+
+  onSelect({ selected }) {
+    this.tableSelected.splice(0, this.tableSelected.length);
+    this.tableSelected.push(...selected);
+  }
+
+  onActivate(event) {
+    this.tableActiveRow = event.row;
+  }
+
 
   getCharts() {
     this.zone.runOutsideAngular(() => {

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Form } from "@angular/forms";
 import { tap } from "rxjs/operators";
 import { Observable } from "rxjs";
@@ -19,7 +19,7 @@ export class FailService {
 
   constructor(private http: HttpClient) {}
 
-  create(body: Form): Observable<Fail> {
+  create(body): Observable<Fail> {
     console.log(this.urlFail);
     console.log(body);
     return this.http.post<any>(this.urlFail, body).pipe(

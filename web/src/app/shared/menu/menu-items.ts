@@ -190,9 +190,9 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: "/admin/management",
-    title: "User Management",
+    title: "System",
     type: "sub",
-    icontype: "fas fa-user text-default",
+    icontype: "fas fa-cog text-default",
     collapse: "management",
     isCollapsed: true,
     children: [

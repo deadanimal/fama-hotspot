@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/syafiqbasri/Development/POC/POC0015/fama-hotspot/api/env"
+VIRTUAL_ENV='/Users/yusliadiyusof/Documents/poc/fama-hotspot/api/env'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

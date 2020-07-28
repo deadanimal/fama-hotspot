@@ -23,6 +23,10 @@ class FailViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Fail.objects.all()
     serializer_class = FailSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filterset_fields = [
+        'name',
+        'project_id'
+    ]
 
     def get_permissions(self):
         if self.action == 'list':
@@ -50,3 +54,21 @@ class FailViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
                 queryset = Fail.objects.filter(company=company.id)
         """
         return queryset
+
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        fail = self.get_object()
+        fail.name = True
+        fail.save()
+
+        serializer = FailSerializer(fail)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        fail = self.get_object()
+        fail.project_id = True
+        fail.save()
+
+        serializer = FailSerializer(fail)
+        return Response(serializer.data)

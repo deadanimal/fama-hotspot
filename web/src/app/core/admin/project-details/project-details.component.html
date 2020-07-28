@@ -31,46 +31,71 @@
 </div>
 
 <div class="container-fluid mt--6">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Project Name</label>
-                        </div>
-                        <div class="col-md-3">:&nbsp;&nbsp;{{listProject.name}}</div>
-                        <div class="col-md-3">
-                            <label>Project Start Date</label>
-                        </div>
-                        <div class="col-md-3">:&nbsp;&nbsp;{{listProject.start_date | date: "dd/MM/yyyy" }}</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Expected Of Completion</label>
-                        </div>
-                        <div class="col-md-3">:&nbsp;&nbsp;{{listProject.expected_completion_date | date: "dd/MM/yyyy" }}</div>
-                        <div class="col-md-3">
-                            <label>Project Owner</label>
-                        </div>
-                        <div class="col-md-3">:&nbsp;&nbsp;{{listProject.owner_project}}</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Person In Charge</label>
-                        </div>
-                        <div class="col-md-3">:&nbsp;&nbsp;{{listProject.pic}}</div>
-                        <div class="col-md-3">
-                            <label>Project Cost</label>
-                        </div>
-                        <div class="col-md-3">:&nbsp;&nbsp;{{listProject.project_cost}}</div>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Project Name</b></label>
             </div>
-        </div>  
+            <div class="col-md-3">:&nbsp;&nbsp;{{ listProject.name }}</div>
+            <div class="col-md-3">
+              <label><b>Project Start Date</b></label>
+            </div>
+            <div class="col-md-3">
+              :&nbsp;&nbsp;{{ listProject.start_date | date: "dd/MM/yyyy" }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Expected Of Completion</b></label>
+            </div>
+            <div class="col-md-3">
+              :&nbsp;&nbsp;{{
+                listProject.expected_completion_date | date: "dd/MM/yyyy"
+              }}
+            </div>
+            <div class="col-md-3">
+              <label><b>Project Owner</b></label>
+            </div>
+            <div class="col-md-3">
+              :&nbsp;&nbsp;{{ listProject.owner_project }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Person In Charge</b></label>
+            </div>
+            <div class="col-md-3">:&nbsp;&nbsp;{{ listProject.pic }}</div>
+            <div class="col-md-3">
+              <label><b>Project Cost</b></label>
+            </div>
+            <div class="col-md-3">
+              :&nbsp;&nbsp;{{ listProject.project_cost }}
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col text-right">
+              <button class="btn btn-default btn-sm" (click)="viewFile()">
+                View File
+              </button>
+              <button class="btn btn-default btn-sm" (click)="viewActivity()">
+                View Activity
+              </button>
+              <button class="btn btn-default btn-sm" (click)="viewComment()">
+                View Comment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
   <div class="row">
     <div class="col">
       <div class="card">

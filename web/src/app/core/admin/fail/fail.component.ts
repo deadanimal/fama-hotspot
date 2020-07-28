@@ -132,8 +132,8 @@ export class FailComponent implements OnInit, OnDestroy {
     this.editFailDetailsForm = this.formBuilder.group({
       id: new FormControl(""),
       name: new FormControl(""),
-      image: new FormControl(""),
-      document: new FormControl(""),
+      // image: new FormControl(""),
+      // document: new FormControl(""),
       project_id: new FormControl(""),
       created_date: new FormControl(""),
       modified_date: new FormControl(""),
@@ -154,11 +154,26 @@ export class FailComponent implements OnInit, OnDestroy {
     }
   }
 
+  onImageChange2(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.createFailDetailsForm.get("image").setValue(file);
+    }
+  }
+
+  onDocumentChange2(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.createFailDetailsForm.get("document").setValue(file);
+    }
+  }
+
   createDetailsFail() {
     console.log(this.createFailDetailsForm);
     this.loadingBar.start();
 
     const formData = new FormData();
+    formData.append("name", this.createFailDetailsForm.get("name").value);
     formData.append("image", this.createFailDetailsForm.get("image").value);
     formData.append(
       "document",
@@ -229,6 +244,7 @@ export class FailComponent implements OnInit, OnDestroy {
     if (row) {
       console.log(row);
       this.editFailDetailsForm.patchValue(row);
+      console.log(this.editFailDetailsForm.value);
     }
     this.modal = this.modalService.show(
       modalRef,

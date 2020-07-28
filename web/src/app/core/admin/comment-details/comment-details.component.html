@@ -52,12 +52,51 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4" *ngFor="let item of listComment">
-      <div class="card">
-        <div class="card-header bg-secondary">
-          <h3 class="m-0">Comment</h3>
+    <div class="col-md-4">
+      <div *ngFor="let item of listComment">
+        <div
+          class="card"
+          *ngIf="item.phase == 1"
+          style="cursor: pointer;"
+          (click)="openModal(viewModal, item)"
+        >
+          <div class="card-header bg-gradient-info">
+            <h3 class="m-0">Phase {{ item.phase }}</h3>
+          </div>
+          <div class="card-body">{{ item.comment }}</div>
         </div>
-        <div class="card-body">{{item.comment}}</div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div *ngFor="let item of listComment">
+        <div
+          class="card"
+          *ngIf="item.phase == 2"
+          style="cursor: pointer;"
+          (click)="openModal(viewModal, item)"
+        >
+          <div class="card-header bg-gradient-success">
+            <h3 class="m-0">Phase {{ item.phase }}</h3>
+          </div>
+          <div class="card-body">{{ item.comment }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div *ngFor="let item of listComment">
+        <div
+          class="card"
+          *ngIf="item.phase == 3"
+          style="cursor: pointer;"
+          (click)="openModal(viewModal, item)"
+        >
+          <div class="card-header bg-gradient-danger">
+            <h3 class="m-0">Phase {{ item.phase }}</h3>
+          </div>
+          <div class="card-body">{{ item.comment }}</div>
+        </div>
       </div>
     </div>
   </div>

@@ -23,6 +23,10 @@ class CommentViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filterset_fields = [
+        'comment',
+        'project_id'
+    ]
 
     def get_permissions(self):
         if self.action == 'list':
@@ -45,8 +49,26 @@ class CommentViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             company = company_employee[0].company
             
             if company.company_type == 'AD':
-                queryset = Comment.objects.all()
+                queryset = Fail.objects.all()
             else:
-                queryset = Comment.objects.filter(company=company.id)
+                queryset = Fail.objects.filter(company=company.id)
         """
         return queryset
+
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        comment = self.get_object()
+        comment.name = True
+        comment.save()
+
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        comment = self.get_object()
+        comment.project_id = True
+        comment.save()
+
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)

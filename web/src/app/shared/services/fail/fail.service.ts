@@ -58,7 +58,7 @@ export class FailService {
   }
 
   filter(field: String): Observable<Fail[]> {
-    let urlFilter = this.urlFail + "?" + field + "/";
+    let urlFilter = this.urlFail + "?" + field;
     return this.http.get<Fail[]>(urlFilter).pipe(
       tap((res) => {
         console.log("Fail", res);

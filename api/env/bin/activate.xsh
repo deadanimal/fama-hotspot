@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/Users/syafiqbasri/Development/POC/POC0015/fama-hotspot/api/env"
+$VIRTUAL_ENV = r"/Users/yusliadiyusof/Documents/poc/fama-hotspot/api/env"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

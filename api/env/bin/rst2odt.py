@@ -1,4 +1,4 @@
-#!/Users/syafiqbasri/Development/POC/POC0015/fama-hotspot/api/env/bin/python3.7
+#!/Users/yusliadiyusof/Documents/poc/fama-hotspot/api/env/bin/python
 
 # $Id: rst2odt.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>
@@ -26,5 +26,4 @@ description = ('Generates OpenDocument/OpenOffice/ODF documents from '
 writer = Writer()
 reader = Reader()
 output = publish_cmdline_to_binary(reader=reader, writer=writer,
-    description=description)
-
+                                   description=description)

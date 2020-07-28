@@ -1,4 +1,4 @@
-#!/Users/syafiqbasri/Development/POC/POC0015/fama-hotspot/api/env/bin/python3.7
+#!/Users/yusliadiyusof/Documents/poc/fama-hotspot/api/env/bin/python
 
 # $Id: rst2odt_prepstyles.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>
@@ -24,28 +24,29 @@ NAMESPACES = {
     "fo": "urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
 }
 
+
 def prepstyle(filename):
-    
+
     zin = zipfile.ZipFile(filename)
     styles = zin.read("styles.xml")
-    
+
     root = etree.fromstring(styles)
-    for el in root.xpath("//style:page-layout-properties", 
-        namespaces=NAMESPACES):
+    for el in root.xpath("//style:page-layout-properties",
+                         namespaces=NAMESPACES):
         for attr in el.attrib:
             if attr.startswith("{%s}" % NAMESPACES["fo"]):
                 del el.attrib[attr]
-    
+
     tempname = mkstemp()
     zout = zipfile.ZipFile(os.fdopen(tempname[0], "w"), "w",
-        zipfile.ZIP_DEFLATED)
-    
+                           zipfile.ZIP_DEFLATED)
+
     for item in zin.infolist():
         if item.filename == "styles.xml":
             zout.writestr(item, etree.tostring(root))
         else:
             zout.writestr(item, zin.read(item.filename))
-    
+
     zout.close()
     zin.close()
     shutil.move(tempname[1], filename)
@@ -59,6 +60,7 @@ def main():
         sys.exit(1)
     filename = args[0]
     prepstyle(filename)
+
 
 if __name__ == '__main__':
     main()

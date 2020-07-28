@@ -59,7 +59,8 @@ export class CommentService {
   }
 
   filter(field: String): Observable<Comment[]> {
-    let urlFilter = this.urlComment + "?" + field + "/";
+    let urlFilter = this.urlComment + "?" + field;
+    console.log(urlFilter);
     return this.http.get<Comment[]>(urlFilter).pipe(
       tap((res) => {
         console.log("Comments", res);

@@ -44,6 +44,8 @@ export enum SelectionType {
   checkbox = "checkbox",
 }
 
+declare var tableau: any;
+
 @Component({
   selector: "app-analytics",
   templateUrl: "./analytics.component.html",
@@ -111,6 +113,8 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
       action: "Use free internet calls",
     },
   ];
+  vizOne: any;
+  vizTwo: any;
 
   constructor(
     private mockService: MocksService,
@@ -122,9 +126,8 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
     private loadingBar: LoadingBarService,
     private router: Router,
     private _route: ActivatedRoute,
-    public translate: TranslateService
-  ) // private BillData: BillService
-  {}
+    public translate: TranslateService // private BillData: BillService
+  ) {}
 
   ngOnInit() {
     // this.getCharts();
@@ -132,6 +135,47 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
     this.getChartTrendYear();
     this.getChart10();
     this.getChart11();
+  }
+
+  ngAfterViewInit() {
+    this.initTableauOne();
+    this.initTableauTwo();
+  }
+
+  initTableauOne() {
+    var placeholderDiv = document.getElementById("vizContainerOne");
+    // Replace this url with the url of your Tableau dashboard
+    var url =
+      "https://public.tableau.com/views/testing_15890862200980/DashboardMovement?:display_count=y&:origin=viz_share_link";
+    var options = {
+      hideTabs: true,
+      width: "80%",
+      height: "600px",
+      onFirstInteractive: function () {
+        // The viz is now ready and can be safely used.
+        console.log("Run this code when the viz has finished loading.");
+      },
+    };
+    // Creating a viz object and embed it in the container div.
+    this.vizOne = new tableau.Viz(placeholderDiv, url, options);
+  }
+
+  initTableauTwo() {
+    var placeholderDiv = document.getElementById("vizContainerTwo");
+    // Replace this url with the url of your Tableau dashboard
+    var url =
+      "https://public.tableau.com/views/testing_15890862200980/DashboardStockValue?:display_count=y&:origin=viz_share_link";
+    var options = {
+      hideTabs: true,
+      width: "80%",
+      height: "600px",
+      onFirstInteractive: function () {
+        // The viz is now ready and can be safely used.
+        console.log("Run this code when the viz has finished loading.");
+      },
+    };
+    // Creating a viz object and embed it in the container div.
+    this.vizTwo = new tableau.Viz(placeholderDiv, url, options);
   }
 
   ngOnDestroy() {

@@ -114,7 +114,7 @@ export class FailDetailsComponent implements OnInit, OnDestroy {
       console.log("data = ", this.listFail);
       console.log("Svc: ", this.tableRows);
     });
-    this.getCharts();
+    // this.getCharts();
   }
 
   addFailDetails() {
@@ -283,10 +283,10 @@ export class FailDetailsComponent implements OnInit, OnDestroy {
       // this.getChart();
       // this.getChart1();
       // this.getChart2();
-      this.getChart3();
-      this.getChart4();
-      this.getChart5();
-      this.getChart6();
+      // this.getChart3();
+      // this.getChart4();
+      // this.getChart5();
+      // this.getChart6();
       this.getTimeline();
     });
   }
@@ -1101,7 +1101,7 @@ export class FailDetailsComponent implements OnInit, OnDestroy {
 
   getTimeline() {
     let chart = am4core.create(
-      "chartdivProDetails7",
+      "chartdivFailDetails7",
       am4plugins_timeline.SerpentineChart
     );
     chart.curveContainer.padding(20, 20, 20, 20);

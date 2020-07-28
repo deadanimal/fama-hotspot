@@ -23,6 +23,10 @@ class ActivityViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filterset_fields = [
+        'name',
+        'project_id'
+    ]
 
     def get_permissions(self):
         if self.action == 'list':
@@ -45,8 +49,26 @@ class ActivityViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             company = company_employee[0].company
             
             if company.company_type == 'AD':
-                queryset = Activity.objects.all()
+                queryset = Fail.objects.all()
             else:
-                queryset = Activity.objects.filter(company=company.id)
+                queryset = Fail.objects.filter(company=company.id)
         """
         return queryset
+
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        activity = self.get_object()
+        activity.name = True
+        activity.save()
+
+        serializer = ActivitySerializer(activity)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        activity = self.get_object()
+        activity.project_id = True
+        activity.save()
+
+        serializer = ActivitySerializer(activity)
+        return Response(serializer.data)

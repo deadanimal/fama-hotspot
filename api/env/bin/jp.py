@@ -1,4 +1,4 @@
-#!/Users/syafiqbasri/Development/POC/POC0015/fama-hotspot/api/env/bin/python3.7
+#!/Users/yusliadiyusof/Documents/poc/fama-hotspot/api/env/bin/python
 
 import sys
 import json

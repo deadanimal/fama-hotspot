@@ -1,6 +1,6 @@
-#!/Users/syafiqbasri/Development/POC/POC0015/fama-hotspot/api/env/bin/python3.7
+#!/Users/yusliadiyusof/Documents/poc/fama-hotspot/api/env/bin/python
 
-# Author: 
+# Author:
 # Contact: grubert@users.sf.net
 # Copyright: This module has been placed in the public domain.
 
@@ -21,6 +21,7 @@ except:
 from docutils.core import publish_cmdline, default_description
 from docutils.writers import manpage
 
-description = ("Generates plain unix manual documents.  " + default_description)
+description = ("Generates plain unix manual documents.  " +
+               default_description)
 
 publish_cmdline(writer=manpage.Writer(), description=description)

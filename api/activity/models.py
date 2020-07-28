@@ -24,6 +24,7 @@ class Activity(models.Model):
     activity_cost = models.CharField(max_length=100, default='NA', blank=True)
     progress_level = models.CharField(max_length=100, default='NA', blank=True)
     pic = models.CharField(max_length=100, default='NA', blank=True)
+    project_id = models.CharField(max_length=100, default='NA', blank=True)
     created_date = models.DateTimeField(auto_now=True)
     modified_date = models.DateTimeField(auto_now=True)
 

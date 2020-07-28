@@ -1101,7 +1101,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
 
   getTimeline() {
     let chart = am4core.create(
-      "chartdivProDetails7",
+      "chartdivActivityDetails7",
       am4plugins_timeline.SerpentineChart
     );
     chart.curveContainer.padding(20, 20, 20, 20);

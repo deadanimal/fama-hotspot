@@ -40,9 +40,9 @@ export enum SelectionType {
 }
 
 @Component({
-  selector: 'app-comment-details',
-  templateUrl: './comment-details.component.html',
-  styleUrls: ['./comment-details.component.scss']
+  selector: "app-comment-details",
+  templateUrl: "./comment-details.component.html",
+  styleUrls: ["./comment-details.component.scss"],
 })
 export class CommentDetailsComponent implements OnInit, OnDestroy {
   // Chart
@@ -106,13 +106,14 @@ export class CommentDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.proid["id"]);
-    this.CommentData.getOne(this.proid).subscribe((res) => {
+    console.log(this.proid);
+    let field = "project_id=" + this.proid;
+    this.CommentData.filter(field).subscribe((res) => {
       this.listComment = res;
       // this.tableRows = [...res];
 
-      console.log("data = ", this.listComment);
-      console.log("Svc: ", this.tableRows);
+      // console.log("data = ", this.listComment);
+      // console.log("Svc: ", this.tableRows);
     });
     this.getCharts();
   }
@@ -1101,7 +1102,7 @@ export class CommentDetailsComponent implements OnInit, OnDestroy {
 
   getTimeline() {
     let chart = am4core.create(
-      "chartdivProDetails7",
+      "chartdivCommentDetails7",
       am4plugins_timeline.SerpentineChart
     );
     chart.curveContainer.padding(20, 20, 20, 20);

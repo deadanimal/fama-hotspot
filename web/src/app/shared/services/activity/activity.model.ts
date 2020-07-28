@@ -12,6 +12,7 @@ export class Activity {
   public activity_cost: string;
   public progress_level: string;
   public pic: string;
+  public project_id: string;
 
   constructor(
     id: string,
@@ -26,7 +27,8 @@ export class Activity {
     project_timeframe: string,
     activity_cost: string,
     progress_level: string,
-    pic: string
+    pic: string,
+    project_id: string
   ) {
     this.id = id;
     this.name = name;
@@ -41,5 +43,6 @@ export class Activity {
     this.activity_cost = activity_cost;
     this.progress_level = progress_level;
     this.pic = pic;
+    this.project_id = project_id;
   }
 }

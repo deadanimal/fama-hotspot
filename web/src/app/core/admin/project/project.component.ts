@@ -323,51 +323,51 @@ export class ProjectComponent implements OnInit, OnDestroy {
     chart.data = [
       {
         country: "Jan",
-        visits: 3,
+        visits: 300000,
       },
       {
         country: "Feb",
-        visits: 4,
+        visits: 400000,
       },
       {
         country: "Mar",
-        visits: 5,
+        visits: 500000,
       },
       {
         country: "Apr",
-        visits: 6,
+        visits: 600000,
       },
       {
         country: "May",
-        visits: 3,
+        visits: 300000,
       },
       {
         country: "Jun",
-        visits: 2,
+        visits: 200000,
       },
       {
         country: "July",
-        visits: 5,
+        visits: 500000,
       },
       {
         country: "Aug",
-        visits: 6,
+        visits: 600000,
       },
       {
         country: "Sep",
-        visits: 9,
+        visits: 900000,
       },
       {
         country: "Oct",
-        visits: 5,
+        visits: 500000,
       },
       {
         country: "Nov",
-        visits: 4,
+        visits: 400000,
       },
       {
         country: "Dec",
-        visits: 7,
+        visits: 700000,
       },
     ];
 
@@ -416,32 +416,40 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   getChart6() {
-    // pie chart
-    // let chart = am4core.create("chartReceipt", am4charts.XYChart);
     let chart = am4core.create("chartdivBillDelivery6", am4charts.PieChart);
 
     // Add data
     chart.data = [
       {
-        label: "Completed",
-        amount: 501.9,
+        status: "Project 1",
+        amount: 2,
       },
       {
-        label: "Pending",
-        amount: 301.9,
+        status: "Project 2",
+        amount: 5,
       },
       {
-        label: "On-Going",
-        amount: 201.1,
+        status: "Project 3",
+        amount: 3,
+      },
+      {
+        status: "Project 4",
+        amount: 4,
       },
     ];
 
     // Add and configure Series
     let pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "amount";
-    pieSeries.dataFields.category = "label";
+    pieSeries.dataFields.category = "status";
     pieSeries.slices.template.stroke = am4core.color("#fff");
     pieSeries.slices.template.strokeOpacity = 1;
+
+    pieSeries.alignLabels = false;
+    // pieSeries.labels.template.bent = true;
+    pieSeries.labels.template.radius = 1;
+    // pieSeries.labels.template.padding(0, 0, 0, 0);
+    // pieSeries.labels.template.bent = true;
 
     // This creates initial animation
     pieSeries.hiddenState.properties.opacity = 1;

@@ -222,16 +222,18 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     console.log("field = ", field);
     this.FailData.filter(field).subscribe(
       (res) => {
-      // this.listProject = res;
-      // this.tableRows = [...res];
-      // console.log("fail data = ", res);
-      // console.log("fail data = ", res[0]["id"]);
-      if (res) {
-        this.navigatePage("/admin/fail-details", res[0]["id"]);
+        // this.listProject = res;
+        // this.tableRows = [...res];
+        // console.log("fail data = ", res);
+        // console.log("fail data = ", res[0]["id"]);
+        if (res) {
+          this.navigatePage("/admin/fail-details", res[0]["id"]);
+        }
+      },
+      (err) => {
+        this.errorAlert("Empty Data");
       }
-    },(err) => {
-      this.errorAlert('Empty Data');
-    });
+    );
   }
 
   viewActivity() {
@@ -707,7 +709,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     let series2 = chart.series.push(new am4charts.LineSeries());
     series2.dataFields.valueY = "inactive";
     series2.dataFields.categoryX = "month";
-    series2.name = "Exspenses";
+    series2.name = "Expenses";
     series2.strokeWidth = 3;
     series2.bullets.push(new am4charts.CircleBullet());
     series2.tooltipText = "Amount {name} in {categoryX}: {valueY}";
@@ -805,7 +807,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     ];
 
     createSeries("first", "Bugdet");
-    createSeries("second", "Exspenses");
+    createSeries("second", "Expenses");
 
     function arrangeColumns() {
       let series = chart.series.getIndex(0);
@@ -867,7 +869,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         amount: 501.9,
       },
       {
-        label: "Exspenses",
+        label: "Expenses",
         amount: 301.9,
       },
     ];

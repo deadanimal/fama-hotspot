@@ -168,58 +168,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     pieSeries.slices.template.stroke = am4core.color("#fff");
     pieSeries.slices.template.strokeOpacity = 1;
 
+    pieSeries.alignLabels = false;
+    pieSeries.labels.template.bent = true;
+    pieSeries.labels.template.radius = 1;
+    pieSeries.labels.template.padding(0, 0, 0, 0);
+    pieSeries.labels.template.bent = true;
+
     // This creates initial animation
     pieSeries.hiddenState.properties.opacity = 1;
     pieSeries.hiddenState.properties.endAngle = -90;
     pieSeries.hiddenState.properties.startAngle = -90;
 
     chart.hiddenState.properties.radius = am4core.percent(0);
-  }
-
-  getChart1() {
-    let chart = am4core.create("chartdiv1", am4charts.PieChart);
-    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
-
-    chart.data = [
-      {
-        item: "Lights",
-        value: 40,
-      },
-      {
-        item: "Fridge",
-        value: 30,
-      },
-      {
-        item: "TV",
-        value: 20,
-      },
-      {
-        item: "Washing Machine",
-        value: 16,
-      },
-    ];
-    chart.radius = am4core.percent(70);
-    chart.innerRadius = am4core.percent(40);
-    chart.startAngle = 180;
-    chart.endAngle = 360;
-
-    let series = chart.series.push(new am4charts.PieSeries());
-    series.dataFields.value = "value";
-    series.dataFields.category = "item";
-    series.ticks.template.disabled = true;
-    series.labels.template.disabled = true;
-
-    series.slices.template.cornerRadius = 10;
-    series.slices.template.innerCornerRadius = 7;
-    series.slices.template.draggable = true;
-    series.slices.template.inert = true;
-    series.alignLabels = false;
-
-    series.hiddenState.properties.startAngle = 90;
-    series.hiddenState.properties.endAngle = 90;
-
-    //chart.legend = new am4charts.Legend();
-    this.chart1 = chart;
   }
 
   getChart2() {
@@ -347,7 +307,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     pieSeries.alignLabels = false;
     pieSeries.labels.template.bent = true;
-    pieSeries.labels.template.radius = 3;
+    pieSeries.labels.template.radius = 2;
     pieSeries.labels.template.padding(0, 0, 0, 0);
 
     pieSeries.ticks.template.disabled = true;

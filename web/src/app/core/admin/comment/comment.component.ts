@@ -30,7 +30,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Fail } from "src/app/shared/services/fail/fail.model";
 import { FailService } from "src/app/shared/services/fail/fail.service";
 
-import { Project } from "src/app/shared/services/project/project.model";
+// import { Project } from "src/app/shared/services/project/project.model";
 import { ProjectService } from "src/app/shared/services/project/project.service";
 
 import { Comment } from "src/app/shared/services/comment/comment.model";

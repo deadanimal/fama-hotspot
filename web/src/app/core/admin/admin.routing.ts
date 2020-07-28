@@ -14,6 +14,7 @@ import { ProjectDetailsComponent } from "./project-details/project-details.compo
 import { FailDetailsComponent } from "./fail-details/fail-details.component";
 import { ActivityDetailsComponent } from "./activity-details/activity-details.component";
 import { CommentDetailsComponent } from "./comment-details/comment-details.component";
+import { CalendarComponent } from "./calendar/calendar.component";
 
 export const AdminRoutes: Routes = [
   {
@@ -38,6 +39,10 @@ export const AdminRoutes: Routes = [
       {
         path: "activity",
         component: ActivityComponent,
+      },
+      {
+        path: "calendar",
+        component: CalendarComponent,
       },
       {
         path: "comment",

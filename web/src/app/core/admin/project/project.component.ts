@@ -323,51 +323,51 @@ export class ProjectComponent implements OnInit, OnDestroy {
     chart.data = [
       {
         country: "Jan",
-        visits: 3025,
+        visits: 3,
       },
       {
         country: "Feb",
-        visits: 1882,
+        visits: 4,
       },
       {
         country: "Mar",
-        visits: 1809,
+        visits: 5,
       },
       {
         country: "Apr",
-        visits: 1322,
+        visits: 6,
       },
       {
         country: "May",
-        visits: 1122,
+        visits: 3,
       },
       {
         country: "Jun",
-        visits: 1114,
+        visits: 2,
       },
       {
         country: "July",
-        visits: 984,
+        visits: 5,
       },
       {
         country: "Aug",
-        visits: 711,
+        visits: 6,
       },
       {
         country: "Sep",
-        visits: 665,
+        visits: 9,
       },
       {
         country: "Oct",
-        visits: 580,
+        visits: 5,
       },
       {
         country: "Nov",
-        visits: 443,
+        visits: 4,
       },
       {
         country: "Dec",
-        visits: 441,
+        visits: 7,
       },
     ];
 

@@ -36,6 +36,8 @@ import { FailService } from "src/app/shared/services/fail/fail.service";
 import { Activity } from "src/app/shared/services/activity/activity.model";
 import { ActivityService } from "src/app/shared/services/activity/activity.service";
 
+import { ProjectService } from "src/app/shared/services/project/project.service";
+
 export enum SelectionType {
   single = "single",
   multi = "multi",
@@ -87,7 +89,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
   constructor(
     private ActivityData: ActivityService,
-    // private projectData: ProjectService,
+    private projectData: ProjectService,
     private notifyService: NotifyService,
     private zone: NgZone,
     private modalService: BsModalService,
@@ -112,6 +114,11 @@ export class ActivityComponent implements OnInit, OnDestroy {
       //   };
       // });
     });
+
+    this.projectData.getAll().subscribe((res) => {
+      this.listProject = res;
+      console.log("project = ", this.listProject);
+    });
   }
 
   ngOnInit() {
@@ -127,6 +134,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
       project_timeframe: new FormControl(""),
       activity_cost: new FormControl(""),
       progress_level: new FormControl(""),
+      project_id: new FormControl(""),
       pic: new FormControl(""),
       created_date: new FormControl(""),
       modified_date: new FormControl(""),
@@ -144,6 +152,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
       activity_cost: new FormControl(""),
       progress_level: new FormControl(""),
       pic: new FormControl(""),
+      project_id: new FormControl(""),
       // created_date: new FormControl(""),
       // modified_date: new FormControl(""),
     });

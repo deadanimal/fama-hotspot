@@ -169,12 +169,13 @@ export const ROUTES: RouteInfo[] = [
   //   type: "link",
   //   icontype: "fas fa-chart-bar text-default",
   // },
-  // {
-  //   path: "/admin/bayaran",
-  //   title: "Bayaran",
-  //   type: "link",
-  //   icontype: "fas fa-money-bill-alt text-default",
-  // },
+  {
+    path: "/admin/calendar",
+    title: "Calendar",
+    type: "link",
+    icontype: "fas fa-calendar-alt text-default",
+  },
+
   {
     path: "/admin/analytics",
     title: "Analytics",

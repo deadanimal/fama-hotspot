@@ -43,6 +43,7 @@ import { ProjectDetailsComponent } from "./project-details/project-details.compo
 import { FailDetailsComponent } from './fail-details/fail-details.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { CommentDetailsComponent } from './comment-details/comment-details.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { CommentDetailsComponent } from './comment-details/comment-details.compo
     FailDetailsComponent,
     ActivityDetailsComponent,
     CommentDetailsComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,

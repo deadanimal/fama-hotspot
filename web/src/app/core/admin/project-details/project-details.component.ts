@@ -219,8 +219,9 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
 
   viewFile() {
     let field = "project_id=" + this.proid;
-    // console.log("field = ",field);
-    this.FailData.filter(field).subscribe((res) => {
+    console.log("field = ", field);
+    this.FailData.filter(field).subscribe(
+      (res) => {
       // this.listProject = res;
       // this.tableRows = [...res];
       // console.log("fail data = ", res);
@@ -228,6 +229,8 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
       if (res) {
         this.navigatePage("/admin/fail-details", res[0]["id"]);
       }
+    },(err) => {
+      this.errorAlert('Empty Data');
     });
   }
 
@@ -304,7 +307,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   errorAlert(task) {
     swal.fire({
       title: "Error",
-      text: "Cannot " + task + " Action, Please Try Again!",
+      text: task,
       type: "error",
       buttonsStyling: false,
       confirmButtonClass: "btn btn-danger",

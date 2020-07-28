@@ -387,6 +387,22 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-control-label">Project</label>
+            <select
+              class="form-control"
+              placeholder="Enter Fail Period"
+              formControlName="project_id"
+            >
+              <option *ngFor="let list of listProject" [value]="list.id">{{
+                list.name
+              }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 
@@ -539,6 +555,22 @@
               placeholder="Enter Person In Charge"
               formControlName="pic"
             />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-control-label">Project</label>
+            <select
+              class="form-control"
+              placeholder="Enter Fail Period"
+              formControlName="project_id"
+            >
+              <option *ngFor="let list of listProject" [value]="list.id">{{
+                list.name
+              }}</option>
+            </select>
           </div>
         </div>
       </div>

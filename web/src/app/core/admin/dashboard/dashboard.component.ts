@@ -131,8 +131,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
       this.getChart();
       // this.getChart1();
-      this.getChart2();
-      this.getChartpie2();
+      // this.getChart2();
+      this.getChart3();
+      this.getChart4();
+      this.getChart5();
     });
   }
 
@@ -142,19 +144,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // Add data
     chart.data = [
       {
-        status: "Completed ",
+        status: "Project 1",
         amount: 2,
       },
       {
-        status: "Pending",
+        status: "Project 2",
         amount: 5,
       },
       {
-        status: "On-Going",
+        status: "Project 3",
         amount: 3,
       },
       {
-        status: "Cancel",
+        status: "Project 4",
         amount: 4,
       },
     ];
@@ -218,81 +220,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     //chart.legend = new am4charts.Legend();
     this.chart1 = chart;
-  }
-
-  getChartpie2() {
-    // let chart = am4core.create("piechartdiv111", am4charts.XYChart);
-    let chart = am4core.create("piechartdiv111", am4charts.XYChart);
-
-    // Add data
-    chart.data = [
-      {
-        name: "John",
-        points: 35654,
-        color: chart.colors.next(),
-        bullet: "https://www.amcharts.com/lib/images/faces/A04.png",
-      },
-      {
-        name: "Damon",
-        points: 65456,
-        color: chart.colors.next(),
-        bullet: "https://www.amcharts.com/lib/images/faces/C02.png",
-      },
-      {
-        name: "Patrick",
-        points: 45724,
-        color: chart.colors.next(),
-        bullet: "https://www.amcharts.com/lib/images/faces/D02.png",
-      },
-      {
-        name: "Mark",
-        points: 13654,
-        color: chart.colors.next(),
-        bullet: "https://www.amcharts.com/lib/images/faces/E01.png",
-      },
-    ];
-
-    // Create axes
-    let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = "name";
-    categoryAxis.renderer.grid.template.disabled = true;
-    categoryAxis.renderer.minGridDistance = 30;
-    categoryAxis.renderer.inside = true;
-    categoryAxis.renderer.labels.template.fill = am4core.color("#fff");
-    categoryAxis.renderer.labels.template.fontSize = 20;
-
-    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.renderer.grid.template.strokeDasharray = "4,4";
-    valueAxis.renderer.labels.template.disabled = true;
-    valueAxis.min = 0;
-
-    // Do not crop bullets
-    chart.maskBullets = false;
-
-    // Remove padding
-    chart.paddingBottom = 0;
-
-    // Create series
-    let series = chart.series.push(new am4charts.ColumnSeries());
-    series.dataFields.valueY = "points";
-    series.dataFields.categoryX = "name";
-    series.columns.template.propertyFields.fill = "color";
-    series.columns.template.propertyFields.stroke = "color";
-    series.columns.template.column.cornerRadiusTopLeft = 15;
-    series.columns.template.column.cornerRadiusTopRight = 15;
-    series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/b]";
-
-    // Add bullets
-    let bullet = series.bullets.push(new am4charts.Bullet());
-    let image = bullet.createChild(am4core.Image);
-    image.horizontalCenter = "middle";
-    image.verticalCenter = "bottom";
-    image.dy = 20;
-    image.y = am4core.percent(100);
-    image.propertyFields.href = "bullet";
-    image.tooltipText = series.columns.template.tooltipText;
-    image.propertyFields.fill = "color";
-    image.filters.push(new am4core.DropShadowFilter());
   }
 
   getChart2() {
@@ -456,5 +383,256 @@ export class DashboardComponent implements OnInit, OnDestroy {
         value: 2,
       },
     ];
+  }
+
+  getChart4() {
+    let chart = am4core.create("chartdivdashboard4", am4charts.XYChart);
+
+    // Add data
+    chart.data = [
+      {
+        year: "Marketing",
+        completed: 2.5,
+        remaining: 2.5,
+        overdue: 2.1,
+      },
+      {
+        year: "Sales",
+        completed: 2.6,
+        remaining: 2.7,
+        overdue: 2.2,
+      },
+      {
+        year: "Financial",
+        completed: 2.8,
+        remaining: 2.9,
+        overdue: 2.4,
+      },
+      {
+        year: "Human Resource",
+        completed: 2.8,
+        remaining: 2.9,
+        overdue: 2.4,
+      },
+    ];
+
+    chart.legend = new am4charts.Legend();
+    chart.legend.position = "right";
+
+    // Create axes
+    let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "year";
+    categoryAxis.renderer.grid.template.opacity = 0;
+
+    let valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+    valueAxis.min = 0;
+    valueAxis.renderer.grid.template.opacity = 0;
+    valueAxis.renderer.ticks.template.strokeOpacity = 0.5;
+    valueAxis.renderer.ticks.template.stroke = am4core.color("#495C43");
+    valueAxis.renderer.ticks.template.length = 10;
+    valueAxis.renderer.line.strokeOpacity = 0.5;
+    valueAxis.renderer.baseGrid.disabled = true;
+    valueAxis.renderer.minGridDistance = 40;
+
+    // Create series
+    function createSeries(field, name) {
+      let series = chart.series.push(new am4charts.ColumnSeries());
+      series.dataFields.valueX = field;
+      series.dataFields.categoryY = "year";
+      series.stacked = true;
+      series.name = name;
+
+      let labelBullet = series.bullets.push(new am4charts.LabelBullet());
+      labelBullet.locationX = 0.5;
+      labelBullet.label.text = "{valueX}";
+      labelBullet.label.fill = am4core.color("#fff");
+    }
+
+    createSeries("completed", "Completed");
+    createSeries("remaining", "In-Progress");
+    createSeries("overdue", "Overdue");
+  }
+
+  getChart5() {
+    let chart = am4core.create("chartdivdashboard5", am4charts.XYChart);
+    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+    chart.paddingRight = 30;
+    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
+
+    let colorSet = new am4core.ColorSet();
+    colorSet.saturation = 0.4;
+
+    chart.data = [
+      {
+        category: "Project #1",
+        start: "2016-01-01",
+        end: "2016-01-14",
+        color: colorSet.getIndex(0).brighten(0),
+        task: "Gathering requirements",
+      },
+      {
+        category: "Project #1",
+        start: "2016-01-16",
+        end: "2016-01-27",
+        color: colorSet.getIndex(0).brighten(0.4),
+        task: "Producing specifications",
+      },
+      {
+        category: "Project #1",
+        start: "2016-02-05",
+        end: "2016-04-18",
+        color: colorSet.getIndex(0).brighten(0.8),
+        task: "Development",
+      },
+      {
+        category: "Project #1",
+        start: "2016-04-18",
+        end: "2016-04-30",
+        color: colorSet.getIndex(0).brighten(1.2),
+        task: "Testing and QA",
+      },
+      {
+        category: "Project #2",
+        start: "2016-01-08",
+        end: "2016-01-10",
+        color: colorSet.getIndex(2).brighten(0),
+        task: "Gathering requirements",
+      },
+      {
+        category: "Project #2",
+        start: "2016-01-12",
+        end: "2016-01-15",
+        color: colorSet.getIndex(2).brighten(0.4),
+        task: "Producing specifications",
+      },
+      {
+        category: "Project #2",
+        start: "2016-01-16",
+        end: "2016-02-05",
+        color: colorSet.getIndex(2).brighten(0.8),
+        task: "Development",
+      },
+      {
+        category: "Project #2",
+        start: "2016-02-10",
+        end: "2016-02-18",
+        color: colorSet.getIndex(2).brighten(1.2),
+        task: "Testing and QA",
+      },
+      {
+        category: "Project #3",
+        start: "2016-01-02",
+        end: "2016-01-08",
+        color: colorSet.getIndex(4).brighten(0),
+        task: "Gathering requirements",
+      },
+      {
+        category: "Project #3",
+        start: "2016-01-08",
+        end: "2016-01-16",
+        color: colorSet.getIndex(4).brighten(0.4),
+        task: "Producing specifications",
+      },
+      {
+        category: "Project #3",
+        start: "2016-01-19",
+        end: "2016-03-01",
+        color: colorSet.getIndex(4).brighten(0.8),
+        task: "Development",
+      },
+      {
+        category: "Project #3",
+        start: "2016-03-12",
+        end: "2016-04-05",
+        color: colorSet.getIndex(4).brighten(1.2),
+        task: "Testing and QA",
+      },
+      {
+        category: "Project #4",
+        start: "2016-01-01",
+        end: "2016-01-19",
+        color: colorSet.getIndex(6).brighten(0),
+        task: "Gathering requirements",
+      },
+      {
+        category: "Project #4",
+        start: "2016-01-19",
+        end: "2016-02-03",
+        color: colorSet.getIndex(6).brighten(0.4),
+        task: "Producing specifications",
+      },
+      {
+        category: "Project #4",
+        start: "2016-03-20",
+        end: "2016-04-25",
+        color: colorSet.getIndex(6).brighten(0.8),
+        task: "Development",
+      },
+      {
+        category: "Project #4",
+        start: "2016-04-27",
+        end: "2016-05-15",
+        color: colorSet.getIndex(6).brighten(1.2),
+        task: "Testing and QA",
+      },
+      {
+        category: "Project #5",
+        start: "2016-01-01",
+        end: "2016-01-12",
+        color: colorSet.getIndex(8).brighten(0),
+        task: "Gathering requirements",
+      },
+      {
+        category: "Project #5",
+        start: "2016-01-12",
+        end: "2016-01-19",
+        color: colorSet.getIndex(8).brighten(0.4),
+        task: "Producing specifications",
+      },
+      {
+        category: "Project #5",
+        start: "2016-01-19",
+        end: "2016-03-01",
+        color: colorSet.getIndex(8).brighten(0.8),
+        task: "Development",
+      },
+      {
+        category: "Project #5",
+        start: "2016-03-08",
+        end: "2016-03-30",
+        color: colorSet.getIndex(8).brighten(1.2),
+        task: "Testing and QA",
+      },
+    ];
+
+    chart.dateFormatter.dateFormat = "yyyy-MM-dd";
+    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+    let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "category";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.inversed = true;
+
+    let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.minGridDistance = 70;
+    dateAxis.baseInterval = { count: 1, timeUnit: "day" };
+    // dateAxis.max = new Date(2018, 0, 1, 24, 0, 0, 0).getTime();
+    //dateAxis.strictMinMax = true;
+    dateAxis.renderer.tooltipLocation = 0;
+
+    let series1 = chart.series.push(new am4charts.ColumnSeries());
+    series1.columns.template.height = am4core.percent(70);
+    series1.columns.template.tooltipText =
+      "{task}: [bold]{openDateX}[/] - [bold]{dateX}[/]";
+
+    series1.dataFields.openDateX = "start";
+    series1.dataFields.dateX = "end";
+    series1.dataFields.categoryY = "category";
+    series1.columns.template.propertyFields.fill = "color"; // get color from data
+    series1.columns.template.propertyFields.stroke = "color";
+    series1.columns.template.strokeOpacity = 1;
+
+    chart.scrollbarX = new am4core.Scrollbar();
   }
 }
